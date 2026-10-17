@@ -76,7 +76,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,label:focus-within{outl
 .glass{background:linear-gradient(180deg,var(--glass-a),var(--glass-b));border:1px solid var(--stroke);-webkit-backdrop-filter:blur(30px) saturate(170%);backdrop-filter:blur(30px) saturate(170%);box-shadow:inset 0 1px 0 var(--inset),var(--shadow)}
 
 /* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;margin-inline:-20px;padding-inline:20px;background:var(--nav);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--nav-line)}
+.nav{position:sticky;top:0;padding-top:env(safe-area-inset-top,0px);z-index:30;margin-inline:-20px;padding-inline:20px;background:var(--nav);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--nav-line)}
 @media (max-width:420px){.nav{margin-inline:-16px;padding-inline:16px}}
 .navin{max-width:1120px;margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{display:inline-flex;align-items:center;gap:12px;font-weight:700;font-size:18px;letter-spacing:.24em;color:var(--fg)}
@@ -130,12 +130,30 @@ main{position:relative;z-index:1;max-width:1120px;margin:0 auto}
 .fblock{display:flex;flex-direction:column;gap:8px}
 .flabel{font-size:13px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);padding-left:4px}
 .seg.full{display:flex;width:100%}
-.seg.full button{flex:1;justify-content:center}
+.seg.full button{flex:1;justify-content:center;padding:0 6px}
 .fblock textarea{width:100%;resize:none;background:var(--glass-hi);border:1px solid var(--stroke);border-radius:16px;padding:14px 16px;font:inherit;font-size:16px;color:var(--fg);outline:none}
 .fblock textarea:focus,.frow:focus-within{box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--blue) 70%,transparent)}
 .ferr{margin:0;min-height:1em;color:#ff453a;font-size:14px;font-weight:500;text-align:center}
 .sbtns{display:flex;flex-direction:column;gap:6px}
 .addsess-btn{width:100%;margin-top:8px;justify-content:center}
+.stepper{display:flex;align-items:center;gap:6px;padding:3px;border-radius:13px;background:var(--seg);align-self:flex-start}
+.stepper button{width:44px;height:38px;border:0;border-radius:10px;background:var(--seg-on);color:var(--fg);font-size:22px;font-weight:500;display:grid;place-items:center}
+.stepper button:disabled{opacity:.35}
+.stepper output{min-width:40px;text-align:center;font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.setting:has(.stepper){flex-direction:row;align-items:center;justify-content:space-between}
+.nerd{border-top:1px solid var(--hair);padding-top:12px}
+.nerd summary{cursor:pointer;font-size:15px;font-weight:600;color:var(--muted);list-style:none;display:flex;align-items:center;gap:8px}
+.nerd summary::-webkit-details-marker{display:none}
+.nerd summary::before{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .25s}
+.nerd[open] summary::before{transform:rotate(45deg)}
+.nerdin{display:flex;flex-direction:column;gap:16px;padding-top:16px}
+.brief{width:100%;display:flex;flex-direction:column;gap:16px;text-align:left}
+.brief canvas{width:100%;aspect-ratio:3/2;border-radius:18px;background:#05060a;display:block}
+.briefsec h4{margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(235,235,245,.55)}
+.brief ol.num li{font-size:15px;color:rgba(235,235,245,.88)}
+.brief .cuerow span{color:rgba(235,235,245,.7)}
+.rmsg.trans{max-width:520px;width:100%}
+.rtoast{position:absolute;left:0;right:0;margin:0 auto;width:max-content;max-width:90vw;white-space:nowrap;top:18%;z-index:5;padding:12px 22px;border-radius:999px;background:rgba(40,40,48,.88);color:#fff;font-weight:700;font-size:18px;pointer-events:none;animation:rise .25s ease both}
 .slabeltag{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,#A35BFF 18%,transparent);color:#A35BFF}
 .addok{display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:16px;background:var(--glass-hi);border:1px solid var(--stroke)}
 .addok b{font-size:16px}.addok span{font-size:13.5px;color:var(--muted)}
@@ -277,6 +295,14 @@ main{position:relative;z-index:1;max-width:1120px;margin:0 auto}
 .panel h4{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:0 0 12px}
 ol.num{margin:0;padding:0;list-style:none;counter-reset:n;display:flex;flex-direction:column;gap:12px}
 ol.num li{counter-increment:n;display:grid;grid-template-columns:28px 1fr;gap:6px;font-size:16px;line-height:1.45}
+ol.num li b{font-weight:700;color:var(--fg)}
+.cw{color:var(--c)!important;white-space:nowrap}
+.cw::before{content:"";display:inline-block;width:.62em;height:.62em;border-radius:50%;background:var(--c);margin:0 .3em .06em 0;box-shadow:0 0 8px var(--c)}
+.cw[style*="F2F4FA"]{color:var(--fg)!important}.cw[style*="F2F4FA"]::before{box-shadow:inset 0 0 0 1px var(--stroke-hi,rgba(0,0,0,.25));background:#fff}
+.nb{font-variant-numeric:tabular-nums}
+ol.num.setup li::before{background:var(--lyn);border:0;color:#fff;box-shadow:0 2px 10px rgba(122,60,230,.35)}
+ol.num.tips li::before{background:color-mix(in srgb,#FFC24B 26%,transparent);border-color:color-mix(in srgb,#FFC24B 45%,transparent);color:var(--fg)}
+.tsetup b{color:#fff}
 ol.num li::before{content:counter(n);width:22px;height:22px;border-radius:50%;background:var(--glass-hi);border:1px solid var(--stroke);display:grid;place-items:center;font-size:12px;font-weight:700;margin-top:1px;font-variant-numeric:tabular-nums}
 .cuekey{display:flex;flex-direction:column;gap:2px}
 .cuerow{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:center;padding:8px 0}
@@ -284,7 +310,8 @@ ol.num li::before{content:counter(n);width:22px;height:22px;border-radius:50%;ba
 .swatch{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:24px;color:var(--fg);background:var(--glass-hi);border:1px solid var(--stroke);text-transform:uppercase}
 .swatch.col{border:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 22px -8px var(--c);background:var(--c)}
 .swatch.word{font-size:12px;letter-spacing:.02em;color:var(--accent)}
-.cuerow b{display:block;font-size:16px;font-weight:600}
+.cuerow div>b{display:block;font-size:16px;font-weight:600}
+.cuerow span b{font-weight:700;color:var(--fg)}
 .cuerow span{color:var(--muted);font-size:15px;line-height:1.4}
 
 .setting{display:flex;flex-direction:column;gap:10px}
@@ -318,7 +345,7 @@ input[type=range]:disabled{opacity:.35}
 .rtop .rpill:empty{visibility:hidden}
 .rtop .rpill{padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.35);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);color:#fff}
 .rtop .btn{background:rgba(0,0,0,.35);border-color:rgba(255,255,255,.2);color:#fff;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
-.rmain{flex:1;display:grid;place-items:center;text-align:center;padding:16px;min-height:0}
+.rmain{flex:1;display:flex;flex-direction:column;text-align:center;padding:16px;min-height:0}
 .glyph{font-weight:800;line-height:.8;font-size:min(62vw,62vh);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .glyph.word{font-size:min(24vw,32vh);color:var(--pink);letter-spacing:-.03em}
 .cword{font-weight:800;line-height:.9;text-transform:uppercase;letter-spacing:-.03em}
@@ -519,6 +546,7 @@ body.trayon main{padding-bottom:96px}
 .rbar{position:absolute;left:0;right:0;top:0;height:5px;background:rgba(255,255,255,.12);z-index:2}
 .rbar i{display:block;height:100%;width:0;background:#fff;transition:width .25s linear}
 .rmain{overflow:auto}
+.rmain>*{margin:auto}
 .live{position:relative;width:min(80vw,56vh);aspect-ratio:1;display:grid;place-items:center;text-align:center}
 .live svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
 .live .trk{fill:none;stroke:rgba(255,255,255,.14);stroke-width:5}
@@ -526,7 +554,7 @@ body.trayon main{padding-bottom:96px}
 .live .spin{fill:none;stroke:#7d9bff;stroke-width:5;stroke-linecap:round;stroke-dasharray:22 318;transform-origin:60px 60px;animation:spinr 1.4s linear infinite}
 @keyframes spinr{to{transform:rotate(360deg)}}
 .live .big{font-size:min(19vw,14vh);font-weight:800;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
-.live .ready{margin-top:10px;color:rgba(255,255,255,.8);font-size:min(9vw,6vh);font-weight:700;letter-spacing:-.02em}
+.live .ready{margin-top:10px;color:rgba(255,255,255,.8);font-size:min(5.5vw,3.4vh);font-weight:700;letter-spacing:-.02em}
 .rmain .hint2{margin:14px 0 0;font-size:14px;color:rgba(235,235,245,.45)}
 .rate{width:100%;display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
 .rate .rq{font-weight:600;color:#fff}
@@ -636,9 +664,9 @@ body.trayon main{padding-bottom:96px}
     </div>
     <div class="cols">
       <div class="panel glass">
-        <div><h4>Setup</h4><ol class="num" id="dSetup"></ol></div>
+        <div><h4>Setup</h4><ol class="num setup" id="dSetup"></ol></div>
         <div><h4>Cue key</h4><div class="cuekey" id="dCues"></div></div>
-        <div id="dPointsWrap"><h4>Coaching points</h4><ol class="num" id="dPoints"></ol></div>
+        <div id="dPointsWrap"><h4>Coaching points</h4><ol class="num tips" id="dPoints"></ol></div>
       </div>
       <div class="panel glass sticky">
         <h4 class="shd">Session <span id="sLevel"></span></h4>
@@ -646,26 +674,29 @@ body.trayon main{padding-bottom:96px}
         <div class="setting" id="bFollowWrap" hidden><span class="slabel">When two signals clash, follow</span><div class="seg full" id="bFollow" role="group" aria-label="Follow"><button type="button" data-v="color">Color</button><button type="button" data-v="other">Number or word</button></div></div>
         <div class="setting" id="bFlipWrap" hidden><span class="slabel">Flip left and right</span><div class="seg full" id="bFlip" role="group" aria-label="Flip left and right"><button type="button" data-v="off">Off</button><button type="button" data-v="run">Some runs</button><button type="button" data-v="mid">Mid-run</button></div><p class="hint" id="bFlipHint"></p></div>
         <div class="setting" id="bPaceWrap" hidden><label for="bPace">Pace <output id="oPace"></output></label><input type="range" id="bPace" min="1" max="10" step="1"><p class="hint">Higher pace means shorter gaps and less time to read each cue.</p></div>
+        <div class="setting"><span class="slabel">Rounds</span><div class="stepper"><button type="button" id="rMinus" aria-label="Fewer rounds">−</button><output id="oRounds">3</output><button type="button" id="rPlus" aria-label="More rounds">+</button></div></div>
+        <div class="setting"><span class="slabel">Go for</span><div class="seg full" id="sOn" role="group" aria-label="Work time"><button type="button" data-v="30">30 s</button><button type="button" data-v="45">45 s</button><button type="button" data-v="60">60 s</button><button type="button" data-v="90">90 s</button></div></div>
+        <div class="setting"><span class="slabel">Rest for</span><div class="seg full" id="sOff" role="group" aria-label="Rest time"><button type="button" data-v="0">None</button><button type="button" data-v="15">15 s</button><button type="button" data-v="30">30 s</button><button type="button" data-v="45">45 s</button><button type="button" data-v="60">60 s</button></div><p class="hint" id="roundSum"></p></div>
+        <div class="setting" id="speedWrap"><span class="slabel">Speed</span><div class="seg full" id="sSpeed" role="group" aria-label="Speed"><button type="button" data-v="1">1</button><button type="button" data-v="2">2</button><button type="button" data-v="3">3</button><button type="button" data-v="4">4</button><button type="button" data-v="5">5</button></div><p class="hint">During a drill, double tap the screen to go faster, triple tap to go slower. It starts where you left off last time.</p></div>
         <div class="setting"><span class="slabel">Phone distance</span><div class="seg full" id="sDist" role="group" aria-label="Phone distance"><button type="button" data-v="close">Close · 4–5 yd</button><button type="button" data-v="far">Far · 8–10 yd</button></div><p class="hint" id="distHint"></p></div>
-        <div class="setting"><label for="sDur">Total length <output id="oDur"></output></label><input type="range" id="sDur" min="30" max="480" step="15"></div>
-        <div class="setting"><label for="sMin">Shortest gap between cues <output id="oMin"></output></label><input type="range" id="sMin" min="1" max="8" step="0.25"></div>
-        <div class="setting"><label for="sMax">Longest gap between cues <output id="oMax"></output></label><input type="range" id="sMax" min="1.5" max="12" step="0.25"></div>
-        <div class="setting"><label for="sHold">Cue stays on screen <output id="oHold"></output></label><input type="range" id="sHold" min="0.4" max="2.5" step="0.1"></div>
-        <div class="setgroup">
-          <div class="setting"><label for="sWork">Work block <output id="oWork"></output></label><input type="range" id="sWork" min="0" max="90" step="5"></div>
-          <div class="setting"><label for="sRest">Rest between blocks <output id="oRest"></output></label><input type="range" id="sRest" min="0" max="90" step="5"></div>
-          <p class="hint">Set work to Off for one continuous run.</p>
-          <label class="toggle" for="sRand">Surprise block lengths<input type="checkbox" id="sRand"></label>
-          <p class="hint" id="randHint">Each work block runs somewhere between half and one and a half times the length above, so you never know when the rest is coming.</p>
-        </div>
         <div class="toggles">
-          <label class="toggle" for="sName">Show the color name on screen<input type="checkbox" id="sName" checked></label>
-          <label class="toggle" for="sBeep">Beep on each cue<input type="checkbox" id="sBeep" checked></label>
-          <label class="toggle" for="sVoice">Call cues out loud<input type="checkbox" id="sVoice"></label>
           <label class="toggle" for="sAudio">Audio only: hear the cue, screen stays blank<input type="checkbox" id="sAudio"></label>
           <label class="toggle" for="sCam">Track with camera: reaction time, scoring, replay<input type="checkbox" id="sCam"></label>
-          <label class="toggle" for="sAuto">Auto-adjust difficulty after each run<input type="checkbox" id="sAuto" checked></label>
         </div>
+        <details class="nerd"><summary>Nerd settings</summary>
+          <div class="nerdin">
+          <div class="setting"><label for="sMin">Shortest gap between cues <output id="oMin"></output></label><input type="range" id="sMin" min="1" max="8" step="0.25"></div>
+          <div class="setting"><label for="sMax">Longest gap between cues <output id="oMax"></output></label><input type="range" id="sMax" min="1.5" max="12" step="0.25"></div>
+          <div class="setting"><label for="sHold">Cue stays on screen <output id="oHold"></output></label><input type="range" id="sHold" min="0.4" max="2.5" step="0.1"></div>
+          <p class="hint">These are the timings at speed 3. Faster speeds shrink them, slower speeds stretch them.</p>
+          <label class="toggle" for="sRand">Surprise round lengths<input type="checkbox" id="sRand"></label>
+          <p class="hint" id="randHint">Each round runs somewhere between half and one and a half times its set length, so you never know when the rest is coming.</p>
+          <label class="toggle" for="sBeep">Beep on each cue<input type="checkbox" id="sBeep" checked></label>
+          <label class="toggle" for="sVoice">Call cues out loud<input type="checkbox" id="sVoice"></label>
+          <label class="toggle" for="sAuto">Change speed from my rating after each run<input type="checkbox" id="sAuto" checked></label>
+          </div>
+        </details>
+        <div hidden><input type="range" id="sDur" min="30" max="2000" step="1"><output id="oDur"></output><input type="range" id="sWork" min="0" max="90" step="5"><output id="oWork"></output><input type="range" id="sRest" min="0" max="90" step="5"><output id="oRest"></output><input type="checkbox" id="sName" checked></div>
         <button class="start" id="startBtn"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M4 2.6v10.8c0 .7.8 1.1 1.4.7l8.2-5.4c.5-.3.5-1.1 0-1.4L5.4 1.9C4.8 1.5 4 1.9 4 2.6z"/></svg>Start drill</button>
         <div class="addrow"><button class="btn addsess-btn" id="addToSess" type="button">+ Add to session</button><button class="quiet" id="addOther" type="button" hidden>Other session</button></div>
       </div>
@@ -1527,7 +1558,7 @@ const DRILLS=[
   {v:'blue',label:'Left',move:'Next pass with your left foot',steps:[['run',[[12.5,6]],0.2,hold()],['pass',[11.5,1.8],0.45,UP],['pass',[12.5,5.35],0.55,UP]]},
   {v:'orange',label:'Right',move:'Next pass with your right foot',steps:[['run',[[11.5,6]],0.2,hold()],['pass',[12.5,1.8],0.45,UP],['pass',[11.5,5.35],0.55,UP]]}],
  setup:['Stand 4 to 5 yards from a wall.','Phone § to your right, near the wall, angled at you.','Nothing else. Just you, the wall, and your brain.'],
- points:['The ball never stops. Wrong foot still counts as a pass, but count it as a miss.','Shift your feet early so the ball arrives on the right side.','At level 5 and up, this gets ugly fast. Drop the pace before you drop the level.'],
+ points:['The ball never stops. Wrong foot still counts as a pass, but count it as a miss.','Shift your feet early so the ball arrives on the right side.','At level 5 and up, this gets ugly fast. Drop the speed before you drop the level.'],
  set:{dur:120,min:2,max:3.5,hold:0.7}},
 
 {id:'sprint-solver',name:'Sprint Solver',type:'Overload',focus:'Speed',level:'Intermediate',mins:6,kind:'color',noBall:true,brain:true,
@@ -1551,7 +1582,7 @@ const DRILLS=[
   {v:'blue',label:'Left',move:'Kill it dead, then go left',steps:[['juggle',1,0.45],['run',[[10.5,9.1],[4.6,9]],1.2]]},
   {v:'orange',label:'Right',move:'Kill it dead, then go right',steps:[['juggle',1,0.45],['run',[[13.5,9.1],[19.4,9]],1.2]]}],
  setup:['A gate 8 yards to your left and another 8 yards to your right.','Start juggling in the middle.','Prop the phone § ahead and a little to the right, propped up so you can see it over the ball.'],
- points:['Ball drops while you are solving? Restart and drop the pace one notch.','Low juggles buy you time. High ones steal it.','Kill it on the first touch after you solve it, then go.'],
+ points:['Ball drops while you are solving? Restart and drop the speed one notch.','Low juggles buy you time. High ones steal it.','Kill it on the first touch after you solve it, then go.'],
  set:{dur:120,min:3,max:5,hold:1}}
 ];
 
@@ -1694,7 +1725,6 @@ function drawPhone(ctx,g,drill,cue,lit){
   const iw=w-s*0.14,ih=h-s*0.14;
   ctx.fillStyle=lit&&drill.kind==='color'?COL[cue.v]:'#000';
   roundRect(ctx,x-iw/2,y-ih/2,iw,ih,s*0.16);ctx.fill();
-  if(lit&&drill.kind==='color'&&$('sName')?.checked!==false&&!(cur&&curDist()==='far')){ctx.fillStyle=INK[cue.v];ctx.font=`800 ${s*0.55}px ${FONT}`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(cue.label[0],x,y+s*0.03)}
   if(lit&&drill.kind!=='color'){
     const fs=Math.min(s*0.75,iw/(cue.v.length*0.62));
     ctx.fillStyle=drill.kind==='word'?PINK:'#fff';ctx.font=`800 ${fs}px ${FONT}`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(cue.v,x,y+s*0.03)}
@@ -1847,7 +1877,7 @@ function addCard(){
   a.onclick=()=>openBuilder();return a;
 }
 function renderGrid(){
-  const grid=$('grid');grid.innerHTML='';
+  const grid=$('grid');clearThumbs();grid.innerHTML='';
   const q=($('search').value||'').trim().toLowerCase();
   const list=DRILLS.filter(d=>inType(d)&&(!q||[d.name,d.focus,d.type,d.summary,d.gear||'',d.noBall?'no ball':''].join(' ').toLowerCase().includes(q)));
   $('libSub').textContent=`${list.length} drill${list.length===1?'':'s'}${typeF==='All'?'':' in '+typeF}${q?` matching “${$('search').value.trim()}”`:''}`;
@@ -1860,7 +1890,7 @@ function renderGrid(){
       f.onclick=e=>{e.stopPropagation();toggleFav(d);sf();renderFilters();if(typeF==='Favorites')renderGrid()};b.appendChild(f)}
     if(activeSess()){const q=document.createElement('span');q.className='qadd';q.setAttribute('role','button');q.setAttribute('aria-label','Add '+d.name+' to '+activeSess().name);q.textContent='+';
       q.onclick=e=>{e.stopPropagation();const a=activeSess();if(!a)return;const c=cfgFor(d);if(d.brain)c.bsnap={...brainOf(d)};addItem(a,d,c);q.classList.add('ok');q.textContent='✓';setTimeout(()=>{q.classList.remove('ok');q.textContent='+'},1200)};b.appendChild(q)}
-    grid.appendChild(b);requestAnimationFrame(()=>drawThumb(b.querySelector('canvas'),d));
+    grid.appendChild(b);const cv=b.querySelector('canvas');requestAnimationFrame(()=>drawThumb(cv,d));watchThumb(b,cv,d);
   });
   if(typeF==='All')grid.appendChild(addCard());
 }
@@ -1896,33 +1926,50 @@ const clips={},clipSaved={};
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DIST={close:'4 to 5 yards',far:'8 to 10 yards'};
 const setupLines=(d,dist)=>d.setup.map(l=>l.replace(/§/g,DIST[dist]||DIST.close));
-const DIST_HINT={close:'The phone sits 4 to 5 yards from where you read the cue. Big color plus the name, easy to read even in sun.',
-  far:'Game-distance reading, like spotting a teammate’s run across the field. Color only, the name turns off, and each cue stays up 0.3 s longer.'};
+const DIST_HINT={close:'The phone sits 4 to 5 yards from where you read the cue.',
+  far:'Game-distance reading, like spotting a teammate’s run across the field. Each cue stays up 0.3 s longer.'};
 
 function swatchHTML(d,c){
   if(d.kind==='color')return `<div class="swatch col" style="--c:${COL[c.v]};color:${INK[c.v]}">${E(c.label[0])}</div>`;
   return `<div class="swatch${d.kind==='word'?' word':''}">${E(c.v)}</div>`;
 }
-function settingsFor(d){return Object.assign({work:0,rest:0,dist:'close',rand:!!(d.set&&d.set.work)},d.set,store('set:'+d.id)||{})}
+/* simple settings: rounds of work and rest. Gaps and hold time are the speed-3 timings; speed 1-5 scales them */
+const REST_OPTS=[0,15,30,45,60],WORK_OPTS=[30,45,60,90];
+function defRest(d){const base={Fitness:30,Overload:30,Reaction:15,Technical:15}[d.type]??30,own=d.set&&d.set.work?d.set.rest||0:0,v=Math.max(base,own);return REST_OPTS.find(x=>x>=v)??60}
+function settingsFor(d){const ds=d.set||{};const s=Object.assign({dist:'close',rand:!!ds.work,work:30,rest:defRest(d),rounds:3,min:ds.min??3,max:ds.max??5,hold:ds.hold??1},store('set2:'+d.id)||{});
+  s.work=Math.max(30,+s.work||30);s.rest=Math.max(0,+s.rest||0);s.rounds=Math.min(10,Math.max(1,+s.rounds||3));s.dur=s.rounds*(s.work+s.rest);return s}
+const SPEEDF=[1.35,1.15,1,0.87,0.75];
+function speedOf(d){const v=+store('speed:'+d.id);return v>=1&&v<=5?v:3}
+function setSpeed(d,n){n=Math.min(5,Math.max(1,n));store('speed:'+d.id,n);return n}
+function setRoundsUI(rounds,work,rest){$('oRounds').textContent=rounds;$('sWork').value=work;$('sRest').value=rest;$('sDur').value=rounds*(work+rest);
+  $('sOn').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===work));$('sOff').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===rest));
+  $('rMinus').disabled=rounds<=1;$('rPlus').disabled=rounds>=10;
+  $('roundSum').textContent=`${rounds} round${rounds>1?'s':''} of ${work} s${rest?`, ${rest} s rest between`:', no rest'}. About ${fmt(rounds*work+(rounds-1)*rest)} in all.`}
+function curRounds(){return +$('oRounds').textContent||3}
 function levelOf(d){return (store('lvl:'+d.id)||{n:1}).n}
 function curDist(){return $('sDist').querySelector('[aria-pressed="true"]')?.dataset.v||'close'}
-function renderSetup(d){$('dSetup').innerHTML=setupLines(d,curDist()).map(s=>`<li>${E(s)}</li>`).join('')}
+/* rich text for setup and coaching lines: cue colors become colored words, distances and numbers go bold, and so does the phone */
+const RICH=/\b(blue|orange|red|green|white)\b|(\b\d+(?:\.\d+)?(?:\s*(?:to|-|–)\s*\d+(?:\.\d+)?)?(?:\s*(?:yards?|yd|meters?|feet|ft|seconds?|minutes?|min)\b|\s*(?:m|s)\b(?![a-z]))?)|\b(phone|wall|goal|mannequin|defender|tennis balls?)\b/gi;
+function rich(t){t=String(t??'');let out='',i=0;t.replace(RICH,(m,col,num,key,at)=>{out+=E(t.slice(i,at));i=at+m.length;
+  if(col){const c=col.toLowerCase();out+=`<b class="cw" style="--c:${COL[c]}">${E(m)}</b>`}else if(num)out+=`<b class="nb">${E(m)}</b>`;else out+=`<b>${E(m)}</b>`;return m});return out+E(t.slice(i))}
+function renderSetup(d){$('dSetup').innerHTML=setupLines(d,curDist()).map(s=>`<li><span>${rich(s)}</span></li>`).join('')}
 /* ================= overload: brain levels ================= */
 const BRAIN_LEVELS=[
- {n:1,name:'Colors',rule:'Blue means left. Orange means right.'},
- {n:2,name:'Numbers',rule:'Under 5 means left. Over 5 means right.'},
- {n:3,name:'Clash',rule:'A color and a number flash together, and they often disagree. Follow the one you pick below.'},
- {n:4,name:'Twisted arrows',rule:'Blue arrow: go where it points. Green arrow: go the opposite way.'},
- {n:5,name:'Even or odd',rule:'Solve it in your head. Even means left. Odd means right.'},
- {n:6,name:'Prime or not',rule:'Prime means left. Not prime means right.'},
- {n:7,name:'Word vs ink',rule:'A color name printed in the wrong color. Follow the ink, or the word if you pick that below.'},
- {n:8,name:'Look back',rule:'Do what the cue before this one said. Blue means left, orange means right. The first cue of a round is just to remember.'},
- {n:9,name:'Chaos',rule:'Levels 3 to 7 mixed at random. A tag at the top tells you which rule is live.'}];
+ {n:1,k:1,name:'Colors',rule:'Blue means left. Orange means right.'},
+ {n:2,k:2,name:'Numbers',rule:'Under 5 means left. Over 5 means right.'},
+ {n:3,k:3,name:'Clash',rule:'A color and a number flash together, and they often disagree. Follow the one you pick below.'},
+ {n:4,k:4,name:'Twisted arrows',rule:'Blue arrow: go where it points. Green arrow: go the opposite way.'},
+ {n:5,k:5,name:'Even or odd',rule:'Solve it in your head. Even means left. Odd means right.'},
+ {n:6,k:7,name:'Word vs ink',rule:'A color name printed in the wrong color. Follow the ink, or the word if you pick that below.'},
+ {n:7,k:8,name:'Look back',rule:'Do what the cue before this one said. Blue means left, orange means right. The first cue of a round is just to remember.'},
+ {n:8,k:9,name:'Chaos',rule:'Levels 3 to 6 mixed at random. A tag at the top tells you which rule is live.'}];
+const lvlCode=l=>BRAIN_LEVELS[Math.min(BRAIN_LEVELS.length,Math.max(1,l))-1].k;
+const pace10=d=>1+(speedOf(d)-1)*2.25;
 const BRAIN_HOLD=[1,1,1,1.1,1.1,1.45,1.4,1.2,1,1.3];
-function brainOf(d){const b=Object.assign({lvl:1,pace:3,follow:'color',flip:'off'},store('brain:'+d.id)||{});b.lvl=Math.min(9,Math.max(1,+b.lvl||1));b.pace=Math.min(10,Math.max(1,+b.pace||3));return b}
+function brainOf(d){const raw=store('brain:'+d.id)||{},b=Object.assign({lvl:1,follow:'color',flip:'off'},raw);if(raw.lvl&&!raw.v)b.lvl={6:5,7:6,8:7,9:8}[raw.lvl]||raw.lvl;b.v=2;b.lvl=Math.min(BRAIN_LEVELS.length,Math.max(1,+b.lvl||1));return b}
 function withBrain(d,cfg){
-  if(!d.brain)return cfg;const b=cfg.bsnap||brainOf(d),f=1.6-0.08*(b.pace-1);
-  const min=+(d.set.min*f).toFixed(2),max=+(min+(d.set.max-d.set.min)).toFixed(2),hold=+Math.max(0.4,(1.7-0.13*(b.pace-1))*BRAIN_HOLD[b.lvl]).toFixed(2);
+  if(!d.brain)return cfg;const b=cfg.bsnap||brainOf(d),p=pace10(d),f=1.6-0.08*(p-1);
+  const min=+(d.set.min*f).toFixed(2),max=+(min+(d.set.max-d.set.min)).toFixed(2),hold=+Math.max(0.4,(1.7-0.13*(p-1))*BRAIN_HOLD[lvlCode(b.lvl)]).toFixed(2);
   return{...cfg,min,max,hold,brain:b};
 }
 const rnd=a=>a[Math.floor(Math.random()*a.length)];
@@ -1931,47 +1978,48 @@ const ACT_COL={L:'blue',R:'orange'};
 const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true};
 const bzTag=t=>`<div class="bztag">${t}</div>`;
 const CHAOS_TAG={3:f=>f==='color'?'Follow color':'Follow number',4:()=>'Arrows',5:()=>'Even or odd',6:()=>'Prime?',7:f=>f==='color'?'Follow ink':'Follow word'};
-function brainCue(lv,follow,st){
-  const word=c=>`<div class="cword" style="color:${INK[c]};font-size:min(18vw,36vh)">${cap(c)}</div>`;
+function brainCue(lv,follow,st){return cueByCode(lvlCode(lv),follow,st)}
+function cueByCode(lv,follow,st){
+  const word=c=>'';
   if(lv===1){const a=rnd(['L','R']),c=ACT_COL[a];return{act:a,bg:COL[c],html:word(c),say:cap(c)}}
   if(lv===2){const n=rnd([1,2,3,4,6,7,8,9]);return{act:n<5?'L':'R',bg:'#000',html:`<div class="bznum">${n}</div>`,say:String(n)}}
   if(lv===3){const ca=rnd(['L','R']),na=Math.random()<0.6?flip(ca):ca,n=rnd(na==='L'?[1,2,3,4]:[6,7,8,9]),c=ACT_COL[ca];
     return{act:follow==='color'?ca:na,bg:COL[c],html:`<div class="bznum" style="color:${INK[c]}">${n}</div>`,say:`${cap(c)}, ${n}`}}
   if(lv===4){const dir=rnd(['L','R']),opp=Math.random()<0.5;return{act:opp?flip(dir):dir,bg:'#000',html:`<div class="bznum" style="color:${opp?COL.green:COL.blue}">${dir==='L'?'←':'→'}</div>`,say:`${opp?'Green':'Blue'} ${dir==='L'?'left':'right'}`}}
   if(lv===5){const op=rnd(['+','−','×']);let a,b;
-    if(op==='+'){a=3+Math.floor(Math.random()*17);b=2+Math.floor(Math.random()*18)}
-    else if(op==='−'){a=10+Math.floor(Math.random()*21);b=2+Math.floor(Math.random()*(a-3))}
-    else{a=2+Math.floor(Math.random()*8);b=2+Math.floor(Math.random()*8)}
+    /* small numbers on purpose: the answer should come in under two seconds */
+    if(op==='+'){a=2+Math.floor(Math.random()*14);b=2+Math.floor(Math.random()*8)}
+    else if(op==='−'){a=8+Math.floor(Math.random()*13);b=2+Math.floor(Math.random()*7)}
+    else{a=2+Math.floor(Math.random()*5);b=2+Math.floor(Math.random()*5)}
     const v=op==='+'?a+b:op==='−'?a-b:a*b;return{act:v%2===0?'L':'R',bg:'#000',html:`<div class="bzexpr">${a} ${op} ${b}</div>`,say:`${a} ${op==='+'?'plus':op==='−'?'minus':'times'} ${b}`}}
   if(lv===6){const want=Math.random()<0.5;let n;do{n=2+Math.floor(Math.random()*58)}while(isPrime(n)!==want);return{act:want?'L':'R',bg:'#000',html:`<div class="bznum">${n}</div>`,say:String(n)}}
   if(lv===7){const ink=rnd(['L','R']),w=Math.random()<0.7?flip(ink):ink;return{act:follow==='color'?ink:w,bg:'#000',html:`<div class="cword" style="color:${COL[ACT_COL[ink]]};font-size:min(19vw,30vh)">${ACT_COL[w]}</div>`,say:`Word ${ACT_COL[w]}. Ink ${ACT_COL[ink]}`}}
   if(lv===8){const a=balAct(st),c=ACT_COL[a],act=st.prev||null;st.prev=a;return{act,bg:COL[c],html:(act?'':bzTag('Remember this one'))+word(c),say:act?cap(c):cap(c)+'. Remember it'}}
-  const L=rnd([3,4,5,6,7]),r=brainCue(L,follow,st);r.html=bzTag(CHAOS_TAG[L](follow))+r.html;r.say=CHAOS_TAG[L](follow)+'. '+r.say;return r;
+  const L=rnd([3,4,5,7]),r=cueByCode(L,follow,st);r.html=bzTag(CHAOS_TAG[L](follow))+r.html;r.say=CHAOS_TAG[L](follow)+'. '+r.say;return r;
 }
-function saveBrain(d,b){store('brain:'+d.id,{lvl:b.lvl,pace:b.pace,follow:b.follow,flip:b.flip});renderBrain(d);syncOut(false)}
+function saveBrain(d,b){store('brain:'+d.id,{lvl:b.lvl,v:2,follow:b.follow,flip:b.flip});renderBrain(d);syncOut(false)}
 function renderBrain(d){
-  const on=!!d.brain;$('brainSet').hidden=!on;$('bPaceWrap').hidden=!on;$('bFlipWrap').hidden=!on;
+  const on=!!d.brain;$('brainSet').hidden=!on;$('bPaceWrap').hidden=true;$('bFlipWrap').hidden=!on;
   ['sMin','sMax','sHold'].forEach(id=>{const w=$(id).closest('.setting');if(w)w.hidden=on});
   if(!on){$('bFollowWrap').hidden=true;return}
   const b=brainOf(d);
   $('bLvl').innerHTML=BRAIN_LEVELS.map(l=>`<button type="button" data-l="${l.n}" aria-pressed="${l.n===b.lvl}"><b>LEVEL ${l.n}</b>${l.name}</button>`).join('');
   $('bLvl').querySelectorAll('button').forEach(x=>x.onclick=()=>{b.lvl=+x.dataset.l;saveBrain(d,b)});
   $('bRule').textContent=BRAIN_LEVELS[b.lvl-1].rule;
-  $('bFollowWrap').hidden=![3,7,9].includes(b.lvl);
+  $('bFollowWrap').hidden=![3,7,9].includes(lvlCode(b.lvl));
   $('bFollow').querySelectorAll('button').forEach(x=>{x.setAttribute('aria-pressed',x.dataset.v===b.follow);x.onclick=()=>{b.follow=x.dataset.v;saveBrain(d,b)}});
-  $('bPace').value=b.pace;$('oPace').textContent=`${b.pace} of 10`;fill($('bPace'));
   $('bFlip').querySelectorAll('button').forEach(x=>{x.setAttribute('aria-pressed',x.dataset.v===b.flip);x.onclick=()=>{b.flip=x.dataset.v;saveBrain(d,b)}});
   $('bFlipHint').textContent={off:'Rules stay the way they are written.',run:'About half your runs start flipped: left means right, right means left. The start screen tells you which.',mid:'The rules flip at random moments during the run. A FLIP screen warns you each time.'}[b.flip];
-  $('sLevel').textContent=`Level ${b.lvl} · Pace ${b.pace}`;
+  $('sLevel').textContent=`Level ${b.lvl} · Speed ${speedOf(d)} of 5`;
 }
-$('bPace').addEventListener('input',()=>{if(!cur||!cur.brain)return;const b=brainOf(cur);b.pace=+$('bPace').value;store('brain:'+cur.id,b);$('oPace').textContent=`${b.pace} of 10`;fill($('bPace'));$('sLevel').textContent=`Level ${b.lvl} · Pace ${b.pace}`;syncOut(false)});
 
 function loadSettings(d){
   const s=settingsFor(d);
-  $('sDur').value=s.dur;$('sMin').value=s.min;$('sMax').value=s.max;$('sHold').value=s.hold;$('sWork').value=s.work;$('sRest').value=s.rest;$('sRand').checked=!!s.rand;$('sAudio').checked=!!s.audio;$('sCam').checked=!!s.cam;$('sAudio').closest('label').hidden=!!d.shout;
+  $('sMin').value=s.min;$('sMax').value=s.max;$('sHold').value=s.hold;setRoundsUI(s.rounds,s.work,s.rest);
+  $('speedWrap').hidden=false;$('sSpeed').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===speedOf(d)));$('sRand').checked=!!s.rand;$('sAudio').checked=!!s.audio;$('sCam').checked=!!s.cam;$('sAudio').closest('label').hidden=!!d.shout;
   $('sDist').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===(s.dist||'close')));
-  const a=audio();$('sBeep').checked=a.beep;$('sVoice').checked=a.voice;$('sName').checked=a.name;$('sAuto').checked=a.auto;
-  $('sLevel').textContent=`Level ${levelOf(d)}`;
+  const a=audio();$('sBeep').checked=a.beep;$('sVoice').checked=a.voice;$('sName').checked=true;$('sAuto').checked=a.auto;
+  $('sLevel').textContent=`Speed ${speedOf(d)} of 5`;
   renderBrain(d);syncOut(false);renderSetup(d);
 }
 let delDrillArm=0;
@@ -1982,8 +2030,8 @@ function openDrill(d){
   $('dTitle').textContent=d.name;$('dSummary').textContent=d.summary;renderFavBtn(d);
   $('dMeta').dataset.type=d.type;
   $('dMeta').innerHTML=metaHTML(d)+`<span class="sep">·</span><span>${d.cues.length} cues</span>`;
-  $('dPoints').innerHTML=d.points.map(s=>`<li>${E(s)}</li>`).join('');$('dPointsWrap').hidden=!d.points.length;
-  $('dCues').innerHTML=d.cues.map(c=>`<div class="cuerow">${swatchHTML(d,c)}<div><b>${E(c.label)}</b><span>${E(c.move)}${(c.w||1)>1?` <em class="often">${c.w}× as often</em>`:''}</span></div></div>`).join('');
+  $('dPoints').innerHTML=d.points.map(s=>`<li><span>${rich(s)}</span></li>`).join('');$('dPointsWrap').hidden=!d.points.length;
+  $('dCues').innerHTML=d.cues.map(c=>`<div class="cuerow">${swatchHTML(d,c)}<div><b>${E(c.label)}</b><span>${rich(c.move)}${(c.w||1)>1?` <em class="often">${c.w}× as often</em>`:''}</span></div></div>`).join('');
   $('copyDrill').hidden=!!d.custom||!!d.brain;$('editDrill').hidden=!d.custom;$('delDrill').hidden=!d.custom;
   $('delDrill').textContent='Delete drill';delDrillArm=0;
   loadSettings(d);
@@ -1997,8 +2045,21 @@ let lastScroll=0;
 function drawDemo(){if(cur&&!$('demo').hidden)drawFrame($('demo'),cur,demo.i,demo.t,demo)}
 
 let last=performance.now();
+/* drill cards: the demo plays while the card is on screen */
+const THUMBS=new Map();let thumbIO=null;
+try{thumbIO=new IntersectionObserver(es=>es.forEach(e=>{const s=THUMBS.get(e.target);if(s)s.on=e.isIntersecting}),{rootMargin:'40px 0px'})}catch(e){}
+function watchThumb(card,canvas,d){if(!thumbIO||reduce)return;const s={c:canvas,d,i:0,t:0,ang:null,on:false,acc:0};THUMBS.set(card,s);thumbIO.observe(card)}
+function clearThumbs(){if(thumbIO)thumbIO.disconnect();THUMBS.clear()}
+function stepThumbs(dt){
+  if(cur||PAGE!=='drills')return;
+  THUMBS.forEach(s=>{if(!s.on||!s.c.isConnected)return;s.acc+=dt;if(s.acc<1/30)return;const step=s.acc;s.acc=0;
+    s.t+=step;const tl=tlFor(s.d,s.i);if(s.t>tl.T){s.t=0;s.ang=null;s.i=(s.i+1)%s.d.cues.length}
+    drawFrame(s.c,s.d,s.i,s.t,s,{small:true,noCaption:true})});
+}
 function tick(now){
   const dt=Math.min(0.05,(now-last)/1000);last=now;
+  if(!document.hidden&&$('runner').hidden&&!document.querySelector('.sheet:not([hidden])'))stepThumbs(dt);
+  if(!document.hidden&&!$('runner').hidden&&BR.d&&!reduce)stepBrief(dt);
   if(!document.hidden&&$('runner').hidden&&!document.querySelector('.sheet:not([hidden])')){
     if(cur){
       if(demo.playing&&!$('demo').hidden){
@@ -2050,21 +2111,24 @@ function syncOut(save=true){
   let mn=+$('sMin').value,mx=+$('sMax').value;if(mx<mn){$('sMax').value=mn;mx=mn}
   const wk=+$('sWork').value,rs=+$('sRest').value,dist=curDist();
   $('oDur').textContent=fmt(+$('sDur').value);$('oMin').textContent=secs(mn);$('oMax').textContent=secs(mx);$('oHold').textContent=(+$('sHold').value).toFixed(1)+' s';
-  $('oWork').textContent=wk?wk+' s':'Off';$('oRest').textContent=wk?(rs?rs+' s':'None'):'–';$('sRest').disabled=!wk;
-  ['sDur','sMin','sMax','sHold','sWork','sRest'].forEach(id=>fill($(id)));
+  ['sMin','sMax','sHold'].forEach(id=>fill($(id)));
   $('distHint').textContent=DIST_HINT[dist];
-  if(cur){$('mName').textContent=cur.name;$('mSub').textContent=`${cur.brain?`Level ${brainOf(cur).lvl} · Pace ${brainOf(cur).pace}`:`Level ${levelOf(cur)}`} · ${fmt(+$('sDur').value)} · ${dist==='far'?'Far phone':'Close phone'}`}
-  $('sRand').closest('label').hidden=!wk;$('randHint').hidden=!wk;
-  if(save&&cur)store('set:'+cur.id,{dur:+$('sDur').value,min:mn,max:mx,hold:+$('sHold').value,work:wk,rest:rs,dist,rand:$('sRand').checked,audio:$('sAudio').checked,cam:$('sCam').checked});
+  if(cur){$('mName').textContent=cur.name;$('mSub').textContent=`${cur.brain?`Level ${brainOf(cur).lvl} · `:''}Speed ${speedOf(cur)} of 5 · ${curRounds()} rounds · ${dist==='far'?'Far phone':'Close phone'}`}
+  if(save&&cur)store('set2:'+cur.id,{rounds:curRounds(),work:wk,rest:rs,min:mn,max:mx,hold:+$('sHold').value,dist,rand:$('sRand').checked,audio:$('sAudio').checked,cam:$('sCam').checked});
 }
-['sDur','sMin','sMax','sHold','sWork','sRest'].forEach(id=>$(id).addEventListener('input',()=>syncOut()));
+['sMin','sMax','sHold'].forEach(id=>$(id).addEventListener('input',()=>syncOut()));
+$('rMinus').onclick=()=>{setRoundsUI(Math.max(1,curRounds()-1),+$('sWork').value,+$('sRest').value);syncOut()};
+$('rPlus').onclick=()=>{setRoundsUI(Math.min(10,curRounds()+1),+$('sWork').value,+$('sRest').value);syncOut()};
+$('sOn').querySelectorAll('button').forEach(b=>b.onclick=()=>{setRoundsUI(curRounds(),+b.dataset.v,+$('sRest').value);syncOut()});
+$('sOff').querySelectorAll('button').forEach(b=>b.onclick=()=>{setRoundsUI(curRounds(),+$('sWork').value,+b.dataset.v);syncOut()});
+$('sSpeed').querySelectorAll('button').forEach(b=>b.onclick=()=>{if(!cur)return;setSpeed(cur,+b.dataset.v);$('sSpeed').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('sLevel').textContent=`Speed ${speedOf(cur)} of 5`;syncOut(false)});
 $('sRand').addEventListener('change',()=>syncOut());$('sAudio').addEventListener('change',()=>syncOut());$('sCam').addEventListener('change',()=>syncOut());
 $('sDist').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('sDist').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));syncOut();if(cur){renderSetup(cur);drawDemo()}});
-['sBeep','sVoice','sName','sAuto'].forEach(id=>$(id).addEventListener('change',()=>{AUD={beep:$('sBeep').checked,voice:$('sVoice').checked,name:$('sName').checked,auto:$('sAuto').checked};store('audio',AUD);drawDemo()}));
+['sBeep','sVoice','sAuto'].forEach(id=>$(id).addEventListener('change',()=>{AUD={beep:$('sBeep').checked,voice:$('sVoice').checked,name:$('sName').checked,auto:$('sAuto').checked};store('audio',AUD);drawDemo()}));
 
 /* ================= runner ================= */
 let R=null,SEQ=null,actx=null,wake=null,AUD=null;
-const audio=()=>Object.assign({beep:true,voice:false,name:true,auto:true},store('audio')||{},AUD||{});
+const audio=()=>Object.assign({beep:true,voice:false,auto:true},store('audio')||{},AUD||{},{name:true});
 const CIRC=2*Math.PI*54;
 function beep(f=880,d=0.12,v=0.35){if(!actx||!audio().beep)return;try{const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=f;o.type='square';g.gain.setValueAtTime(v,actx.currentTime);g.gain.exponentialRampToValueAtTime(0.001,actx.currentTime+d);o.connect(g).connect(actx.destination);o.start();o.stop(actx.currentTime+d)}catch(e){}}
 function say(t,shout){if(!shout&&!audio().voice)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=shout?1.1:1.3;u.pitch=shout?1.1:1;u.volume=1;speechSynthesis.speak(u)}catch(e){}}
@@ -2085,8 +2149,9 @@ function preStart(d,cfg,go,sub){
   R=null;$('rName').textContent=SEQ?SEQ.name:d.name;
   const pl=setupLines(d,cfg.dist).find(l=>/phone/i.test(l))||'';
   const bf=d.brain?(cfg.bsnap||brainOf(d)):null,bl=bf?BRAIN_LEVELS[bf.lvl-1]:null;
-  rMain(`<div class="rmsg"><h3>Before you start</h3>${sub?`<div class="ready">${E(sub)}</div>`:''}<p>Silent switch off, volume up, and screen brightness all the way up.</p>${pl?`<p>${E(pl)}</p>`:''}${d.shout||cfg.audio?'<p>This drill talks'+(cfg.audio?' and the screen stays blank':'')+'. Volume all the way up, or connect a speaker.</p>':''}${bl?`<p><b>Level ${bl.n} · ${E(bl.name)}.</b> ${E(bl.rule)}${[3,7,9].includes(bl.n)?` You are following ${bf.follow==='color'?'the color':'the number or word'}.`:''}${bf.flip==='run'?' This run might start flipped. Watch the countdown.':bf.flip==='mid'?' The rules will flip during the run. A purple FLIP screen warns you.':''}</p>`:''}<p>${E(bringTip(d))}</p><div class="row"><button class="start" id="goBtn">Go</button></div><div class="row"><button class="btn" id="cancelBtn">Cancel</button></div></div>`);
-  $('goBtn').onclick=e=>{e.stopPropagation();go()};$('cancelBtn').onclick=e=>{e.stopPropagation();endSession()};
+  rMain(`<div class="rmsg${SEQ?' trans':''}"><h3>${SEQ?E(d.name):'Before you start'}</h3>${sub?`<div class="ready">${E(sub)}</div>`:''}${SEQ?`<p>${E(d.summary)}</p>${drillBrief(d,cfg)}`:''}<p>Silent switch off, volume up, and screen brightness all the way up.</p>${pl?`<p>${E(pl)}</p>`:''}${d.shout||cfg.audio?'<p>This drill talks'+(cfg.audio?' and the screen stays blank':'')+'. Volume all the way up, or connect a speaker.</p>':''}${bl?`<p><b>Level ${bl.n} · ${E(bl.name)}.</b> ${E(bl.rule)}${[3,7,9].includes(bl.k)?` You are following ${bf.follow==='color'?'the color':'the number or word'}.`:''}${bf.flip==='run'?' This run might start flipped. Watch the countdown.':bf.flip==='mid'?' The rules will flip during the run. A purple FLIP screen warns you.':''}</p>`:''}<p>${E(bringTip(d))}</p><div class="row"><button class="start" id="goBtn">Go</button></div><div class="row"><button class="btn" id="cancelBtn">Cancel</button></div></div>`);
+  if(SEQ)$('goBtn').textContent='Start first drill';
+  $('goBtn').onclick=e=>{e.stopPropagation();BR.d=null;go()};$('cancelBtn').onclick=e=>{e.stopPropagation();endSession()};
   if(cfg.cam||(SEQ&&SEQ.items.some(i=>i.cfg&&i.cfg.cam))){const tv=$('trackV');tv.hidden=false;
     rMain($('rMain').innerHTML.replace('<div class="row">','<p id="camNote">Starting the camera. Stand where you will be when the cue flashes and check you are in the little preview.</p><div class="row">'));
     $('goBtn').onclick=e=>{e.stopPropagation();go()};$('cancelBtn').onclick=e=>{e.stopPropagation();endSession()};
@@ -2099,7 +2164,8 @@ $('mStartBtn').onclick=()=>{if(cur)startSingle(cur,cfgFromSliders())};
 async function runSession(d,cfg){
   if(!wake){try{wake=await navigator.wakeLock?.request('screen')}catch(e){wake=null}}
   cfg=withBrain(d,{...cfg});if(cfg.dist==='far')cfg.hold=+(cfg.hold+0.3).toFixed(1);
-  R={d,cfg,count:0,tally:{},timers:[],round:0,lastIdx:[],done:false,paused:0,bst:{},flip:false};
+  const base={min:cfg.min,max:cfg.max,hold:cfg.hold};if(!d.brain){const f=SPEEDF[speedOf(d)-1];cfg.min=+(base.min*f).toFixed(2);cfg.max=+Math.max(cfg.min+0.3,base.max*f).toFixed(2);cfg.hold=+Math.max(0.4,base.hold*f).toFixed(2)}
+  R={d,cfg,count:0,tally:{},timers:[],round:0,lastIdx:[],done:false,paused:0,bst:{},flip:false,base};
   if(cfg.brain&&cfg.brain.flip!=='off'&&cfg.brain.flip!==undefined){R.flip=cfg.brain.flip==='run'?Math.random()<0.5:false;R.nextFlip=0}
   $('rName').textContent=SEQ?`${SEQ.idx+1}/${SEQ.items.length} · ${d.name}`:d.name;$('rPause').hidden=false;$('rBar').style.width='0%';
   $('trackV').hidden=true;if(cfg.cam&&TRACK.on){trackRecord();const sm=d.id==='shoulder-check'?'scan':d.focus==='Peripheral vision'?'peek':null;if(sm)trackScanStart(sm);else{TRACK.scanMode=null;TRACK.pose=false}}
@@ -2110,7 +2176,8 @@ async function runSession(d,cfg){
 function loopTime(){
   if(!R||R.done||R.paused)return;
   const left=Math.max(0,(R.end-performance.now())/1000),f=1-left/R.cfg.dur;
-  /* no clock or progress bar while a drill runs: seeing time tick by makes the cues predictable */
+  /* only the time left in this round shows; with surprise round lengths it stays hidden */
+  const lt=document.getElementById('liveT');if(lt&&!R.cfg.rand)lt.textContent=fmt(Math.max(0,((R.phaseEnd||R.end)-performance.now())/1000));
   later(loopTime,250);
 }
 function startWork(){
@@ -2120,8 +2187,8 @@ function startWork(){
 }
 /* the screen between cues: a big ticking clock and a spinning ring, so you can tell from 5 yards that it is running */
 function readyHTML(){
-  const left=Math.max(0,(R.end-performance.now())/1000),f=1-left/R.cfg.dur;
-  return `<div class="live" aria-live="off"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" class="trk"/><circle cx="60" cy="60" r="54" class="spin"/></svg><div><div class="ready">${R.cfg.work?`Round ${R.round} · `:''}Ready</div>${R.flip?'<div class="ready" style="color:#C9A2FF;font-size:min(5vw,3.4vh)">Rules flipped</div>':''}</div></div><p class="hint2">Tap anywhere to pause</p>`;
+  const showT=!R.cfg.rand,left=Math.max(0,((R.phaseEnd||R.end)-performance.now())/1000),tot=R.cfg.work?Math.max(1,Math.round(R.cfg.dur/(R.cfg.work+(R.cfg.rest||0)))):0;
+  return `<div class="live" aria-live="off"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" class="trk"/><circle cx="60" cy="60" r="54" class="spin"/></svg><div>${showT?`<div class="big" id="liveT">${fmt(left)}</div>`:''}<div class="ready">${R.cfg.work?`Round ${R.round}${tot?` of ${tot}`:''}`:''}${showT?'':`${R.cfg.work?' · ':''}Ready`}</div>${R.flip?'<div class="ready" style="color:#C9A2FF;font-size:min(5vw,3.4vh)">Rules flipped</div>':''}</div></div><p class="hint2">Tap to pause · double tap for faster · triple tap for slower</p>`;
 }
 function nextGap(){
   if(!R||R.paused)return;const now=performance.now();
@@ -2162,7 +2229,7 @@ function balAct(st){if(!st.abag||!st.abag.length)st.abag=shuffle(['L','R','L','R
 function showCue(){
   if(!R||R.paused)return;
   if(R.d.brain){const d=R.d,b=R.cfg.brain;let c;
-    if(b.lvl===8)c=brainCue(8,b.follow,R.bst);else{const want=balAct(R.bst);for(let k=0;k<40;k++){c=brainCue(b.lvl,b.follow,R.bst);if(c.act===want)break}}
+    if(lvlCode(b.lvl)===8)c=brainCue(b.lvl,b.follow,R.bst);else{const want=balAct(R.bst);for(let k=0;k<40;k++){c=brainCue(b.lvl,b.follow,R.bst);if(c.act===want)break}}
     R.count++;const act=c.act&&R.flip?flip(c.act):c.act;
     const k=act?(act==='L'?d.cues[0].label:d.cues[1].label):'Remember';R.tally[k]=(R.tally[k]||0)+1;
     if(R.cfg.cam)trackCue({label:k,want:act});
@@ -2170,7 +2237,7 @@ function showCue(){
   const d=R.d,c=pickCue(d);if(R.cfg.cam){const ci=d.cues.indexOf(c);trackCue({label:c.label,want:expectedSide(d,c,ci)})}R.count++;R.tally[c.label]=(R.tally[c.label]||0)+1;
   if(R.cfg.audio&&!d.shout){say(d.kind==='number'?c.v:(c.say||c.label),true);later(nextGap,R.cfg.hold*1000);return}
   const named=audio().name&&R.cfg.dist!=='far';
-  if(d.kind==='color')rMain(named?`<div class="cword" style="color:${INK[c.v]};font-size:min(${Math.round(112/c.label.length)}vw,36vh)">${E(c.label)}</div>`:'',COL[c.v]);
+  if(d.kind==='color')rMain('',COL[c.v]);
   else rMain(`<div class="glyph${d.kind==='word'?' word':''}" style="${d.kind==='word'?`font-size:min(${Math.round(96/Math.max(3,c.v.length))}vw,32vh)`:'color:#fff'}">${E(c.v)}</div>`,'#000');
   if(d.shout)say(c.say||c.label,true);else{beep(990);say(c.label)}
   later(nextGap,R.cfg.hold*1000);
@@ -2193,7 +2260,16 @@ function resumeRun(){
   loopTime();if(R.phase==='rest'&&R.restEnd)restTick();else nextGap();
 }
 $('rPause').onclick=e=>{e.stopPropagation();if(R&&R.paused)resumeRun();else pauseRun()};
-$('rMain').addEventListener('click',e=>{if(e.target.closest('button,input,label,textarea'))return;if(!R||R.done||!R.start)return;if(R.paused)resumeRun();else pauseRun()});
+let tapN=0,tapT=0;
+$('rMain').addEventListener('click',e=>{if(e.target.closest('button,input,label,textarea'))return;if(!R||R.done||!R.start)return;
+  if(R.paused){resumeRun();return}
+  tapN++;clearTimeout(tapT);tapT=setTimeout(()=>{const n=tapN;tapN=0;if(!R||R.done)return;if(n===1)pauseRun();else speedShift(n===2?1:-1)},330)});
+function speedShift(dl){
+  const d=R.d;let label;
+  if(d.brain){const sp=setSpeed(d,speedOf(d)+dl),n=withBrain(d,{...R.cfg});R.cfg.min=n.min;R.cfg.max=n.max;R.cfg.hold=n.hold;label=`Speed ${sp} of 5`}
+  else{const n=setSpeed(d,speedOf(d)+dl),f=SPEEDF[n-1],b=R.base;R.cfg.min=+(b.min*f).toFixed(2);R.cfg.max=+Math.max(R.cfg.min+0.3,b.max*f).toFixed(2);R.cfg.hold=+Math.max(0.4,b.hold*f).toFixed(2);label=`Speed ${n} of 5`}
+  beep(dl>0?1200:420,0.12);const t=document.createElement('div');t.className='rtoast';t.textContent=(dl>0?'Faster · ':'Slower · ')+label;$('runner').appendChild(t);setTimeout(()=>t.remove(),1400);
+}
 
 /* rating after each drill: drives the auto difficulty */
 function rateHTML(d){return `<div class="rate" data-id="${E(d.id)}"><p class="rq">How did ${E(d.name)} go?</p><div class="seg full"><button type="button" data-r="clean">Clean</button><button type="button" data-r="ok">A few misses</button><button type="button" data-r="hard">Struggled</button></div><p class="rnote"></p></div>`}
@@ -2205,21 +2281,16 @@ function applyRating(d,r){
   const lv=Object.assign({n:1,ratings:0},store('lvl:'+d.id)||{});lv.ratings++;lv.last=r;
   if(!audio().auto){store('lvl:'+d.id,lv);return 'Saved. Auto-adjust is off, so the timing stays the same.'}
   if(d.brain){const b=brainOf(d);let m;
-    if(r==='clean'){if(b.pace<10){b.pace++;m=`Pace ${b.pace} next time.`}else m=b.lvl<9?`Pace is maxed. Time for level ${b.lvl+1}.`:'Chaos at max pace, clean. Respect.'}
-    else if(r==='hard'){b.pace=Math.max(1,b.pace-1);m=`Eased back to pace ${b.pace}. Struggling is the point, so stay close to the edge.`}
-    else m=`Staying at pace ${b.pace}. A few misses means it is working.`;
+    let sp=speedOf(d);
+    if(r==='clean'){if(sp<5){sp=setSpeed(d,sp+1);m=`Speed ${sp} of 5 next time.`}else m=b.lvl<BRAIN_LEVELS.length?`Top speed and clean. Time for level ${b.lvl+1}.`:'Chaos at top speed, clean. Respect.'}
+    else if(r==='hard'){sp=setSpeed(d,sp-1);m=`Eased back to speed ${sp} of 5. Struggling is the point, so stay close to the edge.`}
+    else m=`Staying at speed ${sp} of 5. A few misses means it is working.`;
     store('brain:'+d.id,b);store('lvl:'+d.id,lv);if(cur&&cur.id===d.id)loadSettings(d);return m}
-  const s=settingsFor(d);let msg;
-  if(r==='clean'){
-    const was=[s.hold,s.min,s.max].join();
-    s.hold=Math.max(0.4,+(s.hold-0.1).toFixed(1));s.min=Math.max(1,s.min-0.25);s.max=Math.max(s.min+0.5,s.max-0.25);
-    if([s.hold,s.min,s.max].join()===was)msg=s.dist==='far'?`Level ${lv.n}. You have maxed out this drill. Respect.`:'Timing is as tight as it goes. Switch to Far phone distance next.';
-    else{lv.n++;msg=`Level ${lv.n}. The cue now shows for ${s.hold.toFixed(1)} s with shorter gaps.`}
-  }else if(r==='hard'){
-    s.hold=Math.min(2.5,+(s.hold+0.1).toFixed(1));s.min=Math.min(8,s.min+0.25);s.max=Math.min(12,Math.max(s.min+0.5,s.max+0.25));lv.n=Math.max(1,lv.n-1);
-    msg=`Eased back to level ${lv.n}. The cue now shows for ${s.hold.toFixed(1)} s.`;
-  }else msg=`Staying at level ${lv.n}. Same timing next time.`;
-  store('set:'+d.id,s);store('lvl:'+d.id,lv);if(cur&&cur.id===d.id)loadSettings(d);
+  let n=speedOf(d),msg;
+  if(r==='clean'){if(n<5){n=setSpeed(d,n+1);msg=`Speed ${n} of 5 next time.`}else msg='Top speed and clean. Try the far phone distance next.'}
+  else if(r==='hard'){n=setSpeed(d,n-1);msg=`Eased back to speed ${n} of 5.`}
+  else msg=`Staying at speed ${n} of 5. A few misses means it is working.`;
+  store('lvl:'+d.id,lv);if(cur&&cur.id===d.id)loadSettings(d);
   return msg;
 }
 function finish(){
@@ -2228,23 +2299,28 @@ function finish(){
   const tracked=R.cfg.cam&&TRACK.on;if(tracked){const dd=R.d;trackFinish(dd).then(tr=>{const el=document.getElementById('trkOut');if(el&&tr){el.innerHTML=trackSummaryHTML(tr);const rb=document.getElementById('replayBtn');if(rb)rb.onclick=e=>{e.stopPropagation();openReplay()}}})}
   if(SEQ){SEQ.results.push(res);if(SEQ.idx<SEQ.items.length-1){showTransition();return}showSessionSummary(false);return}
   const rounds=R.cfg.work?` across ${R.round} round${R.round>1?'s':''}`:'';
-  rMain(`<div class="rmsg"><h3>Nice work${profile&&profile.first?', '+E(profile.first):''}.</h3><p>${R.count} cues${rounds} in ${fmt(R.cfg.dur)}.</p>${tracked?'<div id="trkOut" style="width:100%"><p>Crunching your reaction times…</p></div>':''}${R.cfg.brain?`<p>Level ${R.cfg.brain.lvl} · ${E(BRAIN_LEVELS[R.cfg.brain.lvl-1].name)} · Pace ${R.cfg.brain.pace}${R.cfg.brain.flip&&R.cfg.brain.flip!=='off'?' · flips on':''}</p>`:''}<div class="tally">${Object.entries(R.tally).map(([k,v])=>`<div>${E(k)} · ${v}</div>`).join('')}</div>${rateHTML(R.d)}<div class="row"><button class="start" id="againBtn">Run it again</button><button class="btn" id="closeBtn">Back to drill</button></div></div>`);
+  rMain(`<div class="rmsg"><h3>Nice work${profile&&profile.first?', '+E(profile.first):''}.</h3><p>${R.count} cues${rounds} in ${fmt(R.cfg.dur)}.</p>${tracked?'<div id="trkOut" style="width:100%"><p>Crunching your reaction times…</p></div>':''}${R.cfg.brain?`<p>Level ${R.cfg.brain.lvl} · ${E(BRAIN_LEVELS[R.cfg.brain.lvl-1].name)} · Speed ${speedOf(R.d)} of 5${R.cfg.brain.flip&&R.cfg.brain.flip!=='off'?' · flips on':''}</p>`:''}<div class="tally">${Object.entries(R.tally).map(([k,v])=>`<div>${E(k)} · ${v}</div>`).join('')}</div>${rateHTML(R.d)}<div class="row"><button class="start" id="againBtn">Run it again</button><button class="btn" id="closeBtn">Back to drill</button></div></div>`);
   bindRate();
   $('againBtn').onclick=e=>{e.stopPropagation();const d=R.d;runSession(d,cfgFor(d,cur&&cur.id===d.id?cfgFromSliders():{}))};
   $('closeBtn').onclick=e=>{e.stopPropagation();endSession()};
 }
 /* between drills in a session: setup countdown, rating for the drill you just did */
+/* the next drill's page inside a session: live demo, setup, and cue key, then you start it yourself */
+const BR={d:null,i:0,t:0,ang:null};
+function drillBrief(d,cfg){
+  BR.d=d;BR.i=0;BR.t=0;BR.ang=null;
+  return `<div class="brief"><canvas id="briefC" aria-label="${E(d.name)} demo"></canvas>
+  <div class="briefsec"><h4>Setup</h4><ol class="num setup">${setupLines(d,cfg.dist).map(l=>`<li><span>${rich(l)}</span></li>`).join('')}</ol></div>
+  <div class="briefsec"><h4>Cue key</h4>${d.cues.map(c=>`<div class="cuerow">${swatchHTML(d,c)}<div><b>${E(c.label)}</b><span>${rich(c.move)}</span></div></div>`).join('')}</div></div>`;
+}
+function stepBrief(dt){const c=document.getElementById('briefC');if(!BR.d||!c)return;BR.t+=dt;const tl=tlFor(BR.d,BR.i);if(BR.t>tl.T){BR.t=0;BR.ang=null;BR.i=(BR.i+1)%BR.d.cues.length}drawFrame(c,BR.d,BR.i,BR.t,BR,{small:true})}
 function showTransition(){
   const prev=R.d,nx=SEQ.items[SEQ.idx+1],d=findDrill(nx.id),cfg=itemCfg(nx,d);
-  const endAt=performance.now()+SEQ.gap*1000;
-  $('rName').textContent='Up next';$('rTime').textContent='';
-  rMain(`<div class="rmsg trans"><div class="ready">Drill ${SEQ.idx+2} of ${SEQ.items.length} · ${E(itemDetail(nx,d))}</div><h3>${E(d.name)}</h3><div class="tnum" id="tNum">${SEQ.gap}</div><ol class="tsetup">${setupLines(d,cfg.dist).map(l=>`<li>${E(l)}</li>`).join('')}</ol><p>${E(bringTip(d))}</p>${rateHTML(prev)}<div class="row"><button class="start" id="nowBtn">Start now</button><button class="btn danger" id="endBtn2">End session</button></div></div>`);
+  $('rName').textContent=`Up next · ${SEQ.idx+2} of ${SEQ.items.length}`;$('rTime').textContent='';
+  rMain(`<div class="rmsg trans"><div class="ready">Drill ${SEQ.idx+2} of ${SEQ.items.length} · ${E(itemDetail(nx,d))}</div><h3>${E(d.name)}</h3><p>${E(d.summary)}</p>${drillBrief(d,cfg)}<p>${E(bringTip(d))}</p><div class="row"><button class="start" id="nowBtn">Start next drill</button></div>${rateHTML(prev)}<div class="row"><button class="btn danger" id="endBtn2">End session</button></div></div>`);
   bindRate();say('Up next. '+d.name);
-  const go=()=>{clearTimers();SEQ.idx++;runSession(d,cfg)};
-  $('nowBtn').onclick=e=>{e.stopPropagation();go()};
-  $('endBtn2').onclick=e=>{e.stopPropagation();clearTimers();showSessionSummary(true)};
-  const tk=()=>{const ms=endAt-performance.now();if(ms<=0){beep(990,0.15);go();return}const l=Math.ceil(ms/1000),el=$('tNum');if(el&&el.textContent!==String(l)){el.textContent=l;if(l<=3)beep(440,0.08)}later(tk,200)};
-  tk();
+  $('nowBtn').onclick=e=>{e.stopPropagation();BR.d=null;clearTimers();SEQ.idx++;runSession(d,cfg)};
+  $('endBtn2').onclick=e=>{e.stopPropagation();BR.d=null;clearTimers();showSessionSummary(true)};
 }
 function showSessionSummary(early){
   const last=SEQ.results[SEQ.results.length-1],lastD=last&&findDrill(last.id),total=SEQ.results.reduce((a,r)=>a+r.count,0);
@@ -2252,7 +2328,7 @@ function showSessionSummary(early){
   rMain(`<div class="rmsg"><h3>${early?'Session ended':'Session done'}${profile&&profile.first&&!early?', '+E(profile.first):''}.</h3><p>${SEQ.results.length} drill${SEQ.results.length===1?'':'s'} · ${total} cues</p><ol class="tsetup sumlist">${SEQ.results.map(r=>`<li><b>${E(r.name)}</b> · ${r.count} cues</li>`).join('')}</ol>${lastD&&!early?rateHTML(lastD):''}<div class="row"><button class="start" id="doneBtn">Done</button></div></div>`);
   bindRate();$('doneBtn').onclick=e=>{e.stopPropagation();endSession()};
 }
-function endSession(){clearTimers();R=null;SEQ=null;trackStop();$('trackV').hidden=true;try{speechSynthesis.cancel()}catch(e){}try{wake&&wake.release()}catch(e){}wake=null;$('runner').hidden=true;$('runner').style.backgroundColor='#000';document.body.style.overflow='';$('rPause').textContent='Pause';renderSessions();renderTray()}
+function endSession(){clearTimers();R=null;SEQ=null;BR.d=null;trackStop();$('trackV').hidden=true;try{speechSynthesis.cancel()}catch(e){}try{wake&&wake.release()}catch(e){}wake=null;$('runner').hidden=true;$('runner').style.backgroundColor='#000';document.body.style.overflow='';$('rPause').textContent='Pause';renderSessions();renderTray()}
 
 /* ================= appearance ================= */
 const root=document.documentElement,hostTheme=root.getAttribute('data-theme');
@@ -2378,9 +2454,9 @@ function gearFor(ds){const g=new Set(['Cones']);ds.forEach(d=>{if(needsBall(d))g
 function saveSessions(){store('sessions',mySessions)}
 function itemCfg(it,d){return cfgFor(d,it.cfg?{...it.cfg}:{dur:Math.round(it.mins*60)})}
 function itemDur(it){return it.cfg?it.cfg.dur:Math.round(it.mins*60)}
-function itemDetail(it,d){const c=itemCfg(it,d),p=[fmt(c.dur)];
-  if(c.work)p.push(`${c.work}s on, ${c.rest?c.rest+'s':'no'} rest${c.rand?', surprise':''}`);
-  if(d.brain){const b=c.bsnap||brainOf(d);p.push(`level ${b.lvl}, pace ${b.pace}`)}
+function itemDetail(it,d){const c=itemCfg(it,d),p=[];
+  if(c.work){const n=Math.max(1,Math.round(c.dur/(c.work+(c.rest||0))));p.push(`${n} round${n>1?'s':''} of ${c.work} s`,c.rest?`${c.rest} s rest`:'no rest')}else p.push(fmt(c.dur));
+  if(d.brain){const b=c.bsnap||brainOf(d);p.push(`level ${b.lvl}`)}
   if(c.dist==='far')p.push('far phone');if(c.audio)p.push('audio only');if(c.cam)p.push('camera');return p.join(' · ')}
 function snapCfg(d){const c=cfgFromSliders();if(d.brain)c.bsnap={...brainOf(d)};return c}
 function openAddTo(d){
@@ -2437,14 +2513,13 @@ function openSession(s){if(!s)return;SS={s,mode:'view'};ssDelArm=0;renderSessVie
 function renderSessView(){
   const s=SS.s,ds=liveItems(s).map(i=>({...i,d:findDrill(i.id)}));
   $('sessCard').innerHTML=`<div class="shead"><p class="eyebrow">${s.label?E(s.label):(s.custom?'Your session':'Session')}</p><h2>${E(s.name)}</h2>${s.blurb?`<p class="sub">${E(s.blurb)}</p>`:''}</div>
-  <div class="sstats"><div><b>${sessMins(s)}</b><span>minutes</span></div><div><b>${ds.length}</b><span>drills</span></div><div><b>${s.gap||45}s</b><span>setup between</span></div></div>
+  <div class="sstats"><div><b>${sessMins(s)}</b><span>minutes</span></div><div><b>${ds.length}</b><span>drills</span></div></div>
   <ol class="slist">${ds.map((x,i)=>`<li data-type="${x.d.type}"><span class="n">${i+1}</span><div><b>${E(x.d.name)}</b><span>${E(itemDetail(x,x.d))}</span></div><em>${fmt(itemDur(x))}</em></li>`).join('')}</ol>
   <div class="fblock"><span class="flabel">Bring</span><div class="ptags">${gearFor(ds.map(x=>x.d)).map(g=>`<span>${g}</span>`).join('')}</div></div>
-  <div class="fblock"><span class="flabel">Setup time between drills</span><div class="seg full" id="ssGap">${[30,45,60,90].map(g=>`<button type="button" data-v="${g}" aria-pressed="${(s.gap||45)===g}">${g} s</button>`).join('')}</div></div>
+
   <div class="sbtns"><button class="start" id="ssStart"${ds.length?'':' disabled'}>Start session</button>
   ${s.custom?`<div class="row2"><button class="btn" id="ssBuild">${store('activeSess')===s.id?'Adding drills here':'Add drills from library'}</button><button class="btn" id="ssEdit">Edit</button></div><div class="row2"><button class="btn" id="ssDup">Duplicate</button><button class="btn danger" id="ssDel">Delete</button></div>`:`<div class="row2"><button class="btn" id="ssCopy">Copy and customize</button></div>`}
   <button class="quiet" id="ssClose">Close</button></div>`;
-  $('ssGap').querySelectorAll('button').forEach(b=>b.onclick=()=>{s.gap=+b.dataset.v;if(s.custom)saveSessions();renderSessView();renderSessions()});
   $('ssStart').onclick=()=>{hideSheet('sessSheet');startSequence(s)};
   $('ssClose').onclick=()=>hideSheet('sessSheet');
   if(s.custom){$('ssEdit').onclick=()=>editSession(s);
@@ -2470,10 +2545,10 @@ function renderSessEdit(){
   <div class="sbtns"><button class="start" id="ssSave">Save session</button><button class="quiet" id="ssCancel">Cancel</button></div>`;
   $('ssName').oninput=e=>{s.name=e.target.value};$('ssBlurb').oninput=e=>{s.blurb=e.target.value};$('ssLabel').oninput=e=>{s.label=e.target.value};
   $('sessCard').querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{const i=+b.dataset.i,a=b.dataset.a,it=s.items;
-    if(a==='dec'||a==='inc'){const x=it[i],dd=findDrill(x.id);if(!x.cfg)x.cfg=itemCfg(x,dd);x.cfg.dur=Math.min(900,Math.max(30,x.cfg.dur+(a==='inc'?30:-30)));x.mins=x.cfg.dur/60}
+    if(a==='dec'||a==='inc'){const x=it[i],dd=findDrill(x.id);if(!x.cfg)x.cfg=itemCfg(x,dd);const stp=x.cfg.work?x.cfg.work+(x.cfg.rest||0):30;x.cfg.dur=Math.min(1800,Math.max(stp,x.cfg.dur+(a==='inc'?stp:-stp)));x.mins=x.cfg.dur/60}
     if(a==='up'&&i)[it[i-1],it[i]]=[it[i],it[i-1]];if(a==='down'&&i<it.length-1)[it[i+1],it[i]]=[it[i],it[i+1]];if(a==='rm')it.splice(i,1);if(a==='dup')it.splice(i+1,0,{...it[i],cfg:it[i].cfg?{...it[i].cfg}:undefined});renderSessEdit()});
   $('ssPick').querySelectorAll('button').forEach(b=>b.onclick=()=>{SS.pick=b.dataset.v;renderSessEdit()});
-  $('sessCard').querySelectorAll('.pick').forEach(b=>b.onclick=()=>{const d=findDrill(b.dataset.id);{const c=cfgFor(d,{dur:Math.max(2,Math.min(5,d.mins||3))*60});if(d.brain)c.bsnap={...brainOf(d)};s.items.push({id:d.id,mins:c.dur/60,cfg:c})}renderSessEdit()});
+  $('sessCard').querySelectorAll('.pick').forEach(b=>b.onclick=()=>{const d=findDrill(b.dataset.id);{const c=cfgFor(d);if(d.brain)c.bsnap={...brainOf(d)};s.items.push({id:d.id,mins:c.dur/60,cfg:c})}renderSessEdit()});
   $('ssCancel').onclick=()=>{if(SS.orig)openSession(SS.orig);else hideSheet('sessSheet')};
   $('ssSave').onclick=()=>{
     if(!s.name.trim()){$('ssErr').textContent='Give the session a name.';$('ssName').focus();return}
@@ -2651,7 +2726,7 @@ let rz;window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>
    Everything runs on the phone. Video frames are analysed in memory and never uploaded.
    Two engines:
    - motion: a tiny 96x54 grayscale copy of each frame, compared frame to frame (sprint, agility, drill reactions)
-   - pose: MediaPipe Pose (lite model, files served from ./pose/) finds 33 body points per frame */
+   - pose: MediaPipe Pose (lite model, files served from the site folder) finds 33 body points per frame */
 const LAB={stream:null,facing:null,loop:0,tool:null,st:null,pose:null,poseBusy:false,poseCb:null,poseT:0,poseFailed:false};
 const camOK=()=>!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia);
 function ensureAudio(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();actx.resume()}catch(e){}try{const u=new SpeechSynthesisUtterance(' ');u.volume=0;speechSynthesis.speak(u)}catch(e){}}
@@ -2696,8 +2771,8 @@ function frameMotion(g,prev){if(!prev)return{e:0,cx:0.5};let s=0,sx=0,m=0;
 function loadScript(src){return new Promise((res,rej)=>{if(document.querySelector(`script[data-src="${src}"]`)){res();return}const s=document.createElement('script');s.src=src;s.dataset.src=src;s.onload=res;s.onerror=()=>rej(new Error('load '+src));document.head.appendChild(s)})}
 async function poseLoad(){
   if(LAB.pose)return LAB.pose;
-  await loadScript('pose/pose.js');
-  const p=new window.Pose({locateFile:f=>'pose/'+f});
+  await loadScript('pose.js');
+  const p=new window.Pose({locateFile:f=>f});
   p.setOptions({modelComplexity:0,smoothLandmarks:true,enableSegmentation:false,minDetectionConfidence:0.5,minTrackingConfidence:0.5});
   p.onResults(r=>{LAB.poseBusy=false;const cb=LAB.poseCb;if(cb)cb(r.poseLandmarks||null,LAB.poseT)});
   await p.initialize();LAB.pose=p;return p;
@@ -2793,7 +2868,7 @@ async function startToolCamera(t){
   const s=toolSettings(t);
   try{await camStart($('labV'),s.facing)}catch(e){labMsg(e&&e.name==='NotAllowedError'?'Camera access was blocked. Allow the camera for this site in your browser settings, then try again.':'Could not open the camera on this device.');return}
   setMirror(s.facing==='user');
-  if(t.pose){labBig('<span class="labload">Loading body tracking…</span>');try{await poseLoad();labBig('')}catch(e){labBig('');LAB.poseFailed=true;labMsg('Body tracking could not load. It needs the pose folder that ships with the site. Check that it was uploaded to GitHub.');return}}
+  if(t.pose){labBig('<span class="labload">Loading body tracking…</span>');try{await poseLoad();labBig('')}catch(e){labBig('');LAB.poseFailed=true;labMsg('Body tracking could not load. It needs the pose files that ship with the site. Check that they were uploaded to GitHub.');return}}
   SM.prev=null;
   const run=RUNNERS[t.id];LAB.st=run.init(s);
   LAB.poseCb=t.pose?(L,ft)=>{try{run.pose(LAB.st,L,ft,s)}catch(e){console.error(e)}}:null;
